@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" href = "./../../static/css/form.css"/>
+	<link rel = "stylesheet" href = "./../../static/css/navbar.css" />
+    <title>Search Book</title>
+</head>
+<body>
+	<div class="topnav">
+		<a href="/">Home</a>
+		<a href="{{url_for('books_view.show_all_books')}}">View Books</a>
+		<a href="{{url_for('books_view.search_book')}}" class = "active">Search Book</a>
+		<a href="{{url_for('members_view.show_all_members')}}">View Members</a>
+	  </div>
+	<div>
+    <h2>Search Book</h2>
+
+    <form action="{{ url_for('books_view.search_book') }}" method="post">
+        <!-- Add input fields for editing book details -->
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title">
+
+        <label for="authors">Authors:</label>
+        <input type="text" id="authors" name="authors" placeholder="Author1/Author2">
+
+        <!-- Add more input fields for other details -->
+
+        <button type="submit">Search</button>
+    </form>
+	</div>
+</body>
+</html>

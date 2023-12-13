@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" href = "./../../static/css/form.css"/>
+	<link rel = "stylesheet" href = "./../../static/css/navbar.css" />
+    <title>Issue Book - {{ book.title }}</title>
+	<body>
+		<div class="topnav">
+			<a href="/">Home</a>
+			<a href="{{url_for('books_view.show_all_books')}}">View Books</a>
+			<a href="{{url_for('books_view.search_book')}}">Search Book</a>
+			<a href="{{url_for('members_view.show_all_members')}}">View Members</a>
+		  </div>
+
+		<div>
+		<h2>Issue Book - {{ book.title }}</h2>
+
+    <form action="{{ url_for('books_view.issue_book', id=book.id) }}" method="post">
+        
+        <label for="member_id">Member ID:</label>
+        <input type="text" id="member_id" name="member_id"  required>
+
+		<button type="submit">Request Issue</button>
+
+	</form>
+	</div>
+	</body>
+
+</head>
+</html>

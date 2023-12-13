@@ -1,0 +1,82 @@
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel = "stylesheet" href = "./../../static/css/table.css" />
+	<link rel = "stylesheet" href = "./../../static/css/navbar.css" />
+    <style>
+		table {
+			margin-bottom: 20px;
+		}
+		.Heading {
+		  color: white;
+		  background: #536976;
+		  background: linear-gradient(to right, #292e49, #455863);
+		}
+	  </style>
+    <title>{{ member.id }} - Member Details</title>
+    </style>
+  </head>
+
+<body>
+	<div class="topnav">
+		<a href="/">Home</a>
+		<a href="{{url_for('members_view.show_all_members')}}">View Members</a>
+		<a href="{{url_for('books_view.show_all_books')}}">View Books</a>
+		<a href="{{url_for('books_view.search_book')}}">Search Book</a>
+	  </div>
+	  {% with messages = get_flashed_messages() %}
+    	{% if messages %}
+        <ul class="flashes">
+			<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    	{% endif %}
+		{% endwith %}
+	<div>
+    <h1 class = "Heading">{{ member.id }}</h1>
+    
+    <table>
+        <tr>
+            <td><strong>Member ID:</strong></td>
+            <td>{{ member.id }}</td>
+        </tr>
+        <tr>
+            <td><strong>First Name:</strong></td>
+            <td>{{ member.first_name }}</td>
+        </tr>
+        <tr>
+            <td><strong>Last Name:</strong></td>
+            <td>{{ member.last_name }}</td>
+        </tr>
+        <tr>
+            <td><strong>Contact Number:</strong></td>
+            <td>{{ member.contact_no }}</td>
+        </tr>
+        <tr>
+            <td><strong>Address:</strong></td>
+            <td>{{ member.adress }}</td>
+        </tr>
+        <tr>
+            <td><strong>Rent Charged:</strong></td>
+            <td>{{ member.rent_charged }}</td>
+        </tr>
+		<tr>
+            <td><strong>Rent Due:</strong></td>
+			{% if member.rent_due < 500 %}
+            <td>{{ member.rent_due }}</td>
+			{% else %}
+			<td style = "color: red;">{{ member.rent_due }}</td>
+			{% endif %}
+        </tr>
+    </table>
+
+	<a href="{{ url_for('members_view.edit_member', id=member.id) }}" class = "button">Edit Member</a>
+	<a href="{{ url_for('members_view.delete_member', id=member.id) }}" class = "button">Delete member</a>
+	<a href="{{ url_for('members_view.show_books_issued', id=member.id) }}" class = "button">View Issued Books</a>
+	<a href="{{ url_for('members_view.return_book', member_id=member.id) }}" class = "button">Return Book</a>
+	</div>
+</body>
+</html>

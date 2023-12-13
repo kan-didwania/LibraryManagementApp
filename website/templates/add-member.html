@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Add New Member</title>
+	<link rel="stylesheet" href="./../static/css/form.css" />
+	<link rel="stylesheet" href="./../static/css/navbar.css" />
+</head>
+
+<body>
+	<div class="topnav">
+		<a href="/">Home</a>
+		<a href="{{url_for('members_view.show_all_members')}}">View Members</a>
+		<a href="{{url_for('books_view.show_all_books')}}">View Books</a>
+		<a href="{{url_for('books_view.search_book')}}">Search Book</a>
+	  </div>
+	  {% with messages = get_flashed_messages() %}
+    	{% if messages %}
+        <ul class="flashes">
+			<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    	{% endif %}
+		{% endwith %}
+	<div style="overflow-x:auto;">
+		<form method ="post" action="{{url_for('members_view.add_member')}}" class="form-container">
+		  <h2 align = "center">Add Member</h2>
+	  
+		  <label for="first_name"><b>First Name</b></label>
+		  <input type="text" name="first_name" required>
+			
+		  <label for="last_name"><b>Last Name</b></label>
+		  <input type="text" name="last_name" >
+
+		  <label for="adress"><b>Adress</b></label>
+		  <input type="text"  name="adress" required>
+
+		  <label for="contact_no"><b>Contact Number</b></label>
+		  <input type="text"  name="contact_no" required>
+
+		  <label for="rent_charged"><b>Rent to be charged</b></label>
+		  <input type="number" name="rent_charged" value = "100" step=0.01>
+	  
+
+		  <button type="submit" >Add</button>
+		  <!-- <button type="button" class="btn cancel" onclick="closeForm()">Close</button> -->
+		  <button type="reset" >Reset</button>
+
+		</form>
+	  </div>
+</body>
+</html>

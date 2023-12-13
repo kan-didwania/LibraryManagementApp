@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Returns</title>
+    <style>
+      table {
+        margin-bottom: 20px;
+        counter-reset: serial-number;
+      }
+      td:first-child::before {
+        counter-increment: serial-number;
+        content: counter(serial-number);
+      }
+      .Row-Heading {
+        color: white;
+        background: #536976;
+        background: linear-gradient(to right, #292e49, #455863);
+      }
+    </style>
+    <link rel="stylesheet" href="./../../static/css/table.css" />
+    <link rel="stylesheet" href="./../../static/css/navbar.css" />
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="{{url_for('user_view.home')}}">Home</a>
+      <a href="{{url_for('user_view.view_issues')}}">View Issues</a>
+      <a href="{{url_for('user_view.view_returns')}}" class="active"
+        >View Returns</a
+      >
+    </div>
+    <div>
+      {% if returns %}
+      <h1 align="center" style="color: #292e49">Returns</h1>
+      <div style="overflow-x: auto">
+        <table>
+          <tr class="Row-Heading">
+            <th>Sr No.</th>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Member ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Complete Rent Paid</th>
+            <th>Last updated on</th>
+          </tr>
+          {%for return in returns%}
+          <tr>
+            <td></td>
+            <td>{{return.book_id}}</td>
+            <td>{{return.borrowed_book.title}}</td>
+            <td>{{return.member_id}}</td>
+            <td>{{return.borrower.first_name}}</td>
+            <td>{{return.borrower.last_name}}</td>
+            {%if return.rent_paid %}
+            <td>Yes</td>
+            {%else%}
+            <td>No</td>
+            {%endif%}
+            <td>{{return.updated_on}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      {%else%}
+      <h1 align="center" style="color: #292e49">Nothing in returns!</h1>
+      {% endif %}
+    </div>
+  </body>
+</html>

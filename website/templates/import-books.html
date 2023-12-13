@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Import Books</title>
+	<link rel = "stylesheet" href = "./../../static/css/form.css" />
+	<link rel = "stylesheet" href = "./../../static/css/navbar.css" />
+</head>
+
+<body>
+
+	<div class="topnav">
+		<a href="/">Home</a>
+		<a href="{{url_for('books_view.show_all_books')}}">View Books</a>
+		<a href="{{url_for('books_view.search_book')}}">Search Book</a>
+		<a href="{{url_for('members_view.show_all_members')}}">View Members</a>
+	  </div>
+	  {% with messages = get_flashed_messages() %}
+    	{% if messages %}
+        <ul class="flashes">
+			<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    	{% endif %}
+		{% endwith %}
+	<div style="overflow-x:auto;">
+		<form method ="post" action="{{url_for('books_view.import_books')}}">
+		  <h2 align = "center">Import Books</h2>
+	  
+		  <label for="title"><b>Title</b></label>
+		  <input type="text" placeholder="Enter Title" name="title">
+	  
+		  <label for="quantity"><b>Quantity</b></label>
+		  <input type="number" placeholder="Enter Quantity" name="quantity" >
+	  
+		  <label for="authors"><b>Authors</b></label>
+		  <input type="text" placeholder="Author1/Author2" name="authors" >
+	  
+		  <label for="isbn"><b>Isbn</b></label>
+		  <input type="text" placeholder="Enter Isbn" name="isbn" >
+
+		  <label for="publisher"><b>Publisher</b></label>
+		  <input type="text" placeholder="Enter publisher" name="publisher" >
+		
+		  <label for="page"><b>Pages</b></label>
+		  <input type="number" placeholder="Enter number of pages in the book" name="page">
+
+		  <button type="submit">Add</button>
+		  <button type="reset">Reset</button>
+
+		</form>
+	  </div>
+</body>
+</html>
