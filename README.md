@@ -113,23 +113,23 @@ Access the application in your browser at http://localhost:5000.
   
    - View all books in the library
 
-   ![Books](website/static/images/screenshots/ViewBooks.png)
+   ![Books](website/static/images/screenshots/view-books.png)
 
    - Click on the book id to get book details and options for edit, delete, issue and see the members who have currently issued the book.
 
-  ![Book Details](/website/static/images/screenshots/BookDetails.png)
+  ![Book Details](/website/static/images/screenshots/book-details.png)
 
-   ![Edit Book](/website/static/images/screenshots/EditBook.png)
+   ![Edit Book](/website/static/images/screenshots/edit-book.png)
    
-   ![Issue Book](/website/static/images/screenshots/IssueBook.png)
+   ![Issue Book](/website/static/images/screenshots/issue-book.png)
 
-   ![View Borrowers](/website/static/images/screenshots/ViewBorrowers.png)
+   ![View Borrowers](/website/static/images/screenshots/view-borrowers.png)
 
 - The librarian gets the option to see the ongoing issues and returns from the home page.
 
-    ![View Issues](/website/static/images/screenshots/ViewIssues.png)
+    ![View Issues](/website/static/images/screenshots/view-issues.png)
 
-    ![View Returns](/website/static/images/screenshots/ViewReturns.png)
+    ![View Returns](/website/static/images/screenshots/view-returns.png)
    
    
 ### Issue and Return
@@ -140,21 +140,21 @@ Access the application in your browser at http://localhost:5000.
 
 - A return can be initiated from the member details page.
 
-  ![Return Book](/website/static/images/screenshots/ReturnBook.png)
+  ![Return Book](/website/static/images/screenshots/return-book.png)
 
 ### Search
 
-![Search Book](/website/static/images/screenshots/SearchBook.png)
+![Search Book](/website/static/images/screenshots/search-book.png)
 
-![Search Book Result](/website/static/images/screenshots/SearchBookResult.png)
+![Search Book Result](/website/static/images/screenshots/search-book-result.png)
 
 ### Debt Management 
 
 Member with debt greater than 500 cannot issue a book.
 
-![Member with debt](/website/static/images/screenshots/MemberDebt.png)
+![Member with debt](/website/static/images/screenshots/member-debt.png)
 
-![Member with debt alert](/website/static/images/screenshots/DebtAlert.png)
+![Member with debt alert](/website/static/images/screenshots/debt-alert.png)
 
 ### API Integration
 
@@ -162,4 +162,4 @@ Member with debt greater than 500 cannot issue a book.
 
 - The librarian can set the quantity for each book that is imported from the library. A default quantity of one is set for all the books imported. 
 
-  ![Import Books](/website/static/images/screenshots/ImportBooks.png)
+  ![Import Books](/website/static/images/screenshots/import-books.png)
