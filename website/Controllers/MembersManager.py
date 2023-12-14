@@ -24,7 +24,6 @@ def addMember(params):
 		print(f"Error inserting data: {e}")
 		raise
 
-
 def searchMember(params):
 	if len(params) == 1:
 		if "id" in params:
@@ -49,6 +48,7 @@ def deleteMember(member_id):
 	if member is None:
 		return "Member Not found!"
 	
+	#return all borrowed books before deleting the member
 	member_transactions = member.transactions
 	for transaction in member_transactions:
 		if transaction.transaction_type == TransactionType.ISSUE:

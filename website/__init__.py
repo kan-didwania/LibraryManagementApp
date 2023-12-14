@@ -1,12 +1,8 @@
 import os
-from flask import Flask
+from flask import Flask, g
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.engine import Engine
 from sqlalchemy import event
-
-import logging
-logging.basicConfig()
-logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
 
 db = SQLAlchemy()
 
@@ -29,6 +25,7 @@ def create_app():
 	app.register_blueprint(user_view)
 
 	with app.app_context():
+		db.drop_all()
 		db.create_all()
 		print("\n\n\nCreated Database!")
 
@@ -43,5 +40,5 @@ def set_sqlite_pragma(dbapi_connection, connection_record):
     cursor.close()
 
 def create_initial_db():
-		create_initial_members()
+	create_initial_members()
 

@@ -14,7 +14,16 @@
       <a href="{{url_for('books_view.search_book')}}">Search Book</a>
       <a href="{{url_for('books_view.import_books')}}">Import Books</a>
     </div>
-
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <ul class="flashes">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';"
+        >&times;</span
+      >
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
     <div>
       <h1>Edit Book - {{ book.title }} - {{ book.id }}</h1>
 
@@ -72,6 +81,7 @@
           id="ratings_count"
           name="ratings_count"
           value="{{ book.ratings_count }}"
+		  min = 0
         />
 
         <label for="num_pages">Number of Pages:</label>
@@ -80,6 +90,7 @@
           id="num_pages"
           name="num_pages"
           value="{{ book.num_pages }}"
+		  min = 0
         />
 
         <label for="text_reviews_count">Text Reviews Count:</label>
@@ -88,6 +99,7 @@
           id="text_reviews_count"
           name="text_reviews_count"
           value="{{ book.text_reviews_count }}"
+		  min = 0
         />
 
         <label for="average_rating">Average Rating:</label>
@@ -97,6 +109,7 @@
           name="average_rating"
           value="{{ book.average_rating }}"
           step="0.01"
+		  min = 0.00
         />
 
         <label for="quantity">Copies Available:</label>
@@ -105,6 +118,7 @@
           id="quantity"
           name="quantity"
           value="{{ book.quantity }}"
+		  min = 0
           required
         />
 

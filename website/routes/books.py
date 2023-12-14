@@ -8,11 +8,16 @@ books_view = Blueprint('books_view', __name__)
 @books_view.route('/books/', methods = ['GET', 'POST'])
 def import_books():
 	if request.method == 'POST':
-		
+
 		if request.form.get('quantity'):
 			number_of_books = int(request.form.get('quantity'))
 		else:
 			number_of_books = 1
+
+		if number_of_books < 0:
+			flash('Number of books cannot be negative. Enter a positive number')
+			return redirect(url_for('books_view.import_books'))
+			
 		title = request.form.get('title')
 		authors = request.form.get('authors')
 		isbn = request.form.get('isbn')
@@ -69,6 +74,11 @@ def edit_book(id):
 		changes["average_rating"] = Decimal(request.form.get('average_rating'))
 		publication_date = datetime.datetime.strptime(request.form.get('publication_date'), '%Y-%m-%d').date().strftime('%m/%d/%Y')
 		changes["publication_date"] = datetime.datetime.strptime(publication_date, '%m/%d/%Y')
+
+		if len(changes['isbn']) != 10 or len(changes['isbn13']) != 13:
+			flash('Wrong ISBN')
+			redirection = True
+		
 		try:
 			editBookDetails(id, changes)
 			flash('Book details edited successfully!')

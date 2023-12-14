@@ -12,7 +12,12 @@ def add_member():
 		params['last_name'] = request.form.get('last_name')
 		params['adress'] = request.form.get('adress')
 		params['contact_no'] = request.form.get('contact_no')
-		params['rent_charged'] = request.form.get('rent_charged')
+		params['rent_charged'] = int(request.form.get('rent_charged'))
+
+		if len(params["contact_no"]) != 10:
+			flash('Contact no. should be 10 digit.')
+			return redirect(url_for('members_view.add_member'))
+		
 		try:
 			addMember(params)
 			flash('Member added successfully!')
@@ -40,8 +45,17 @@ def edit_member(id):
 		changes["last_name"] = request.form.get('last_name')
 		changes["contact_no"] = request.form.get('contact_no')
 		changes["adress"] = request.form.get('adress')
-		changes["rent_charged"] = request.form.get('rent_charged')
-		changes["rent_due"] = request.form.get('rent_due')
+		changes["rent_charged"] = Decimal(request.form.get('rent_charged'))
+		changes["rent_due"] = Decimal(request.form.get('rent_due'))
+
+		if changes['rent_charged'] < 0:
+			flash('Rent to be charged cannot be negative. Enter a positive number')
+			return redirect(url_for('members_view.edit_member', id = id))
+
+		if len(changes["contact_no"]) != 10:
+			flash('Contact no. should be 10 digit.')
+			return redirect(url_for('members_view.edit_member', id = id))
+
 		try:
 			editMemberDetails(id, changes)
 			flash('Member details edited.')

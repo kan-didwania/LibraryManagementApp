@@ -14,8 +14,6 @@ class BookDAO():
 	def getBooksByConditions(condtitions):
 		books = Books.query.filter(*condtitions).all()
 		return books
-	
-
 
 	def deleteBook(book_id):
 		book = BookDAO.getBookById(book_id)
